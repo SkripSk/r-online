@@ -12,9 +12,9 @@ public class TestProperties {
     private static TestProperties INSTANCE = null;
 
     private TestProperties() {
-        System.setProperty("app", "app");
+        System.setProperty("demo", "demo");
         try {
-            properties.load(new FileInputStream(new File("./" + System.getProperty("app") + ".properties")));
+            properties.load(new FileInputStream(new File("./src/main/resources/" + System.getProperty("demo") + ".properties")));
         } catch (IOException e) {
             e.printStackTrace();
         }
