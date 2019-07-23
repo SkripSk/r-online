@@ -1,14 +1,7 @@
 package raiffeisen.pages;
 
-import org.junit.Assert;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import raiffeisen.annotaiton.FieldName;
-import raiffeisen.util.DriverManager;
-
-import java.lang.reflect.Field;
-import java.util.Arrays;
 import java.util.List;
 
 
@@ -22,6 +15,5 @@ public class MainPage extends BasePage {
 
     @FindBy(xpath = "//a[contains (@class,'actions-menu__item actions-menu__item_')]")
     public List<WebElement> actionsMenu;
-
 
 }

@@ -1,22 +1,30 @@
 package raiffeisen.steps;
 
-import cucumber.api.java.en.When;
-import org.openqa.selenium.By;
+import cucumber.api.java.en.And;
+import cucumber.api.java.en.Then;
 import raiffeisen.pages.TransferPage;
 
 public class TransferSteps {
 
     TransferPage transferPage = new TransferPage();
 
-    @When("выбрать пункт \"(.*)\"")
+    @And("выбрать пункт \"(.*)\"")
     public void selectMenuItem(String menuItem){
         transferPage.selectMenuItem(transferPage.pageNavigation, menuItem);
     }
 
-    @When("выбрать карту списания \"(.*)\"")
+    @And("выбрать карту списания \"(.*)\"")
     public void  selectCard (String card){
-        transferPage.click2(By.xpath("//input[@class='c-input-select__input c-input ng-pristine ng-valid ng-touched']"));
-//        transferPage.click(transferPage.inputCard);
-        transferPage.selectCard(transferPage.card, card);
+        transferPage.selectSourceCard(card);
+    }
+
+    @And("ввести номер несуществующей карты в поле \"(.*)\"")
+    public void  inputDestinationCard (String number){
+        transferPage.fillDestinationCardNumber(number);
+    }
+
+    @Then("выводится ошибка")
+    public void  checkError (){
+        transferPage.checkErrorMessage();
     }
 }

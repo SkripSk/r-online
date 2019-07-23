@@ -1,7 +1,7 @@
 package raiffeisen.pages;
 
 import org.junit.Assert;
-import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -15,14 +15,13 @@ import java.util.List;
  */
 public class BasePage {
 
+    protected WebDriver driver;
+
     public WebDriverWait wait = new WebDriverWait(DriverManager.getDriver(), 20);
 
     public BasePage() {
-        PageFactory.initElements(DriverManager.getDriver(), this);
-    }
-
-    public void click2(By by){
-        wait.until(ExpectedConditions.elementToBeClickable(by)).click();
+        driver = DriverManager.getDriver();
+        PageFactory.initElements(driver, this);
     }
 
     public void click(WebElement element){
@@ -39,15 +38,8 @@ public class BasePage {
         Assert.fail("Не найден элмент коллеции - " + itemName);
     }
 
-    public void selectCard(List<WebElement> menuItems, String itemName) {
-
-        for (WebElement item : menuItems) {
-            if (item.getAttribute("title").contains(itemName)) {
-                click(item);
-                return;
-            }
-        }
-        Assert.fail("Не найдена карта - " + itemName);
+    public void fillField(WebElement field, String value) {
+        field.clear();
+        field.sendKeys(value);
     }
-
 }
